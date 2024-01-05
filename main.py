@@ -5,28 +5,46 @@ from functions.generate_data import generate_data
 import functions.parse_data_types as parse_data_types
 
 def main():
-    # Get filename and number of rows to generate from args
+    # 引数を確認する
     check_args(sys.argv)
     num_rows = int(sys.argv[1])
     input_filename = sys.argv[2]
-    rand_seed = int(sys.argv[3])
-    # Read file into dataframe
+    if len(sys.argv > 3):
+        rand_seed = int(sys.argv[3])
+    else:
+        rand_seed = None
+    
+    # ファイルをデータフレームに読み込む
     try:
         input_df = pd.read_csv(input_filename)
     except:
-        print("Could not read file.")
-    # For each column, get column name
+        print("ファイルを読み込めませんでした。")
+        exit()
+
+    # コラム名をリストにする
     column_names = input_df.columns.tolist()
     output_df = pd.DataFrame(columns=column_names)
-    # For each column, parse data type
+
+    # コラムのデータ型を取得する
     input_data_types = input_df.iloc[0]
-    data_types = parse_data_types(column_names, input_data_types)
-    # Generate data
+    try:
+        data_types = parse_data_types(column_names, input_data_types)
+    # 解析できない場合は、データを作成せずに終了
+    except ValueError as e:
+        print(e)
+        print("データを作成できませんでした。")
+        exit()
+
+    # コラムごとにデータを作成する
     for column in data_types:
         column_data = generate_data(num_rows, column["type"], column["args"], rand_seed)
-    # Insert into dataframe
-    # Output csv
-    output_df.to_csv()
+        # データフレームに入れる
+        output_df[column["column_name"]] = column_data
+        
+    # .csvを出力する
+    output_filename = input_filename[:-4] + "_data.csv"
+    output_df.to_csv(path_or_buf=output_filename)
+    print(output_filename + "を作成しました。")
 
 if __name__ == "__main__":
     main()
