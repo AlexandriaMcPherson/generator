@@ -6,6 +6,11 @@ from functions.generator_functions.generate_null import generate_null
 from functions.generator_functions.generate_random import generate_random
 from functions.generator_functions.generate_random_price import generate_random_price
 from functions.generator_functions.generate_serial import generate_serial
+from functions.generator_functions.generate_timestamp_date import generate_timestamp_date
+from functions.generator_functions.generate_timestamp_millis import generate_timestamp_millis
+from functions.generator_functions.generate_timestamp_now import generate_timestamp_now
+from functions.generator_functions.generate_timestamp_seconds import generate_timestamp_seconds
+from functions.generator_functions.generate_timestamp_today import generate_timestamp_today
 from functions.generator_functions.generate_value import generate_fixed_value
 from functions.generator_functions.generate_zero import generate_zero
 from functions.generator_functions.generate_zero_padded import generate_zero_padded
@@ -53,3 +58,13 @@ def generate_data(rows, key, args=None, seed=None):
             pass
         case "SEX":
             pass
+        case "TIMESTAMP_NOW":
+            return generate_timestamp_now(rows)
+        case "TIMESTAMP_TODAY":
+            return generate_timestamp_today(rows)
+        case "TIMESTAMP_DATE":
+            return generate_timestamp_date(seed, rows, args[0], args[1])
+        case "TIMESTAMP_SECONDS":
+            return generate_timestamp_seconds(seed, rows, args[0], args[1])
+        case "TIMESTAMP_MILLIS":
+            return generate_timestamp_millis(seed, rows, args[0], args[1])

@@ -47,6 +47,9 @@ def parse_data_types(column_names, data_types):
             case "RANDOM":
                 errors.append(check_column_args(column_names[i], "RANDOM", args))
                 data_types_dict.update({i: {"column_name": column_names[i], "type": "RANDOM", "args": args}})
+            case "RANDOM_PRICE":
+                errors.append(check_column_args(column_names[i], "RANDOM_PRICE", args))
+                data_types_dict.update({i: {"column_name": column_names[i], "type": "RANDOM_PRICE", "args": args}})
             case "ZERO_PADDED":
                 errors.append(check_column_args(column_names[i], "ZERO_PADDED", args))
                 data_types_dict.update({i: {"column_name": column_names[i], "type": "ZERO_PADDED", "args": args}})
@@ -59,6 +62,23 @@ def parse_data_types(column_names, data_types):
                 data_types_dict.update({i: {"column_name": column_names[i], "type": "DATE_OF_BIRTH", "args": None}})
             case "SEX":
                 data_types_dict.update({i: {"column_name": column_names[i], "type": "SEX", "args": None}})
+            case "ADDRESS_ZIP":
+                data_types_dict.update({i: {"column_name": column_names[i], "type": "ADDRESS_ZIP", "args": None}})
+            case "ADDRESS_FULL":
+                data_types_dict.update({i: {"column_name": column_names[i], "type": "ADDRESS_FULL", "args": None}})
+            case "TIMESTAMP_NOW":
+                data_types_dict.update({i: {"column_name": column_names[i], "type": "TIMESTAMP_NOW", "args": None}})
+            case "TIMESTAMP_TODAY":
+                data_types_dict.update({i: {"column_name": column_names[i], "type": "TIMESTAMP_TODAY", "args": None}})
+            case "TIMESTAMP_DATE":
+                errors.append(check_column_args(column_names[i], "TIMESTAMP_DATE", args))
+                data_types_dict.update({i: {"column_name": column_names[i], "type": "TIMESTAMP_DATE", "args": args}})
+            case "TIMESTAMP_SECONDS":
+                errors.append(check_column_args(column_names[i], "TIMESTAMP_SECONDS", args))
+                data_types_dict.update({i: {"column_name": column_names[i], "type": "TIMESTAMP_SECONDS", "args": args}})
+            case "TIMESTAMP_MILLIS":
+                errors.append(check_column_args(column_names[i], "TIMESTAMP_MILLIS", args))
+                data_types_dict.update({i: {"column_name": column_names[i], "type": "TIMESTAMP_MILLIS", "args": args}})
         
         for error in errors:
             if error:
