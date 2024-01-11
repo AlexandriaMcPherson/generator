@@ -9,6 +9,6 @@ def check_args(args):
     if args[2][-4:] != ".csv":
         print(usage)
         exit()
-    if len(args > 3) and args[3].isnumeric() == False:
+    if len(args) > 3 and args[3].isnumeric() == False:
         print(usage)
         exit()

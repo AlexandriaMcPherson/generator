@@ -2,42 +2,38 @@ from datetime import datetime
 
 from functions.random_gen import TIMESTAMP_DATE, TIMESTAMP_WITH_MICROS, TIMESTAMP_WITH_SECONDS
 
-def check_column_args(column_name, data_type, args):
-    error = f'Incorrect args for ${column_name} of type ${data_type}.'
-    # Check number of args
+def check_column_args_num(data_type, args):
     match data_type:
         case "VALUE" | "SERIAL":
             if len(args) != 1:
-                print(error)
+                return False
+            else:
                 return True
         case "FROM_TABLE" | "RANDOM" | "RANDOM_PRICE" | "ZERO_PADDED" | "ENUM" | "TIMESTAMP_DATE" | \
         "TIMESTAMP_SECONDS" | "TIMESTAMP_MILLIS":
             if len(args) < 2:
-                print(error)
+                return False
+            else:
                 return True
         case _:
-            return False
+            return True
         
-    # Check args valid
+def check_column_args_valid(data_type, args):
     match data_type:
         case "SERIAL":
             if not args[0].isnumeric():
-                print(error)
-                return True
-            return False
+                return False
+            return True
         case "FROM_TABLE": 
             if args[0][-4:] != ".csv":
-                print(error)
-                return True
-            return False
+                return False
+            return True
         case "RANDOM" | "RANDOM_PRICE" | "ZERO_PADDED":
             for arg in args:
                 if not arg.isnumeric():
-                    print(error)
-                    return True
-            return False
+                    return False
+            return True
         case "TIMESTAMP_DATE" | "TIMESTAMP_SECONDS" | "TIMESTAMP_MILLIS":
-            # TODO Check timestamp validity
             for arg in args:
                     if len(arg) < 17:
                         timeformat = TIMESTAMP_WITH_MICROS
@@ -48,8 +44,21 @@ def check_column_args(column_name, data_type, args):
                     try:
                         parse_ts = datetime.strptime(arg, timeformat)
                     except ValueError:
-                        print(error)
-                        return True
-            return False
+                        return False
+            return True
         case _:
+            return True
+        
+
+def check_column_args(column_name, data_type, args):
+    if args:
+        num_error = f'Incorrect number of args for ${column_name} of type ${data_type}.'
+        invalid_error = f'Incorrect type of args for ${column_name} of type ${data_type}.'
+        if not check_column_args_num(data_type, args):
+            print(num_error)
             return False
+        if not check_column_args_valid(data_type, args):
+            print(invalid_error)
+            return False
+    return True
+    
