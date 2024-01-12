@@ -1,4 +1,4 @@
-def generate_serial(rows, start):
+def generate_serial(rows, start=0):
     generated_rows = []
     for num in range(start, (start + rows)):
         generated_rows.append(num)

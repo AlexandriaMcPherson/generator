@@ -21,7 +21,10 @@ def generate_data(rows, key, args=None, seed=None):
         case "VALUE":
             return generate_fixed_value(rows, args[0])
         case "SERIAL":
-            return generate_serial(rows, args[0])
+            if args:
+                return generate_serial(rows, args[0])
+            else:
+                return generate_serial(rows) 
         case "BLANK":
             return generate_blank(rows)
         case "FROM_TABLE":

@@ -37,7 +37,7 @@ def main():
         exit()
 
     # コラムごとにデータを作成する
-    for column in data_types:
+    for col_num, column in data_types.items():
         column_data = generate_data(num_rows, column["type"], column["args"], rand_seed)
         # データフレームに入れる
         output_df[column["column_name"]] = column_data

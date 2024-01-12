@@ -4,11 +4,15 @@ from functions.random_gen import TIMESTAMP_DATE, TIMESTAMP_WITH_MICROS, TIMESTAM
 
 def check_column_args_num(data_type, args):
     match data_type:
-        case "VALUE" | "SERIAL":
-            if len(args) != 1:
+        case "VALUE":
+            if not args or len(args) != 1:
                 return False
             else:
                 return True
+        case "SERIAL":
+            if args and len(args) > 1:
+                return False
+            return True
         case "FROM_TABLE" | "RANDOM" | "RANDOM_PRICE" | "ZERO_PADDED" | "ENUM" | "TIMESTAMP_DATE" | \
         "TIMESTAMP_SECONDS" | "TIMESTAMP_MILLIS":
             if len(args) < 2:
@@ -35,16 +39,16 @@ def check_column_args_valid(data_type, args):
             return True
         case "TIMESTAMP_DATE" | "TIMESTAMP_SECONDS" | "TIMESTAMP_MILLIS":
             for arg in args:
-                    if len(arg) < 17:
-                        timeformat = TIMESTAMP_WITH_MICROS
-                    elif len(arg) < 8:
-                        timeformat = TIMESTAMP_WITH_SECONDS
-                    else:
-                        timeformat = TIMESTAMP_DATE
-                    try:
-                        parse_ts = datetime.strptime(arg, timeformat)
-                    except ValueError:
-                        return False
+                if len(arg) > 18:
+                    timeformat = TIMESTAMP_WITH_MICROS
+                elif len(arg) > 10:
+                    timeformat = TIMESTAMP_WITH_SECONDS
+                else:
+                    timeformat = TIMESTAMP_DATE
+                try:
+                    parse_ts = datetime.strptime(arg, timeformat)
+                except ValueError:
+                    return False
             return True
         case _:
             return True
@@ -52,8 +56,8 @@ def check_column_args_valid(data_type, args):
 
 def check_column_args(column_name, data_type, args):
     if args:
-        num_error = f'Incorrect number of args for ${column_name} of type ${data_type}.'
-        invalid_error = f'Incorrect type of args for ${column_name} of type ${data_type}.'
+        num_error = f'Incorrect number of args for {column_name} of type {data_type}.'
+        invalid_error = f'Incorrect type of args for {column_name} of type {data_type}.'
         if not check_column_args_num(data_type, args):
             print(num_error)
             return False
