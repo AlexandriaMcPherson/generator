@@ -1,2 +1,2 @@
-Fixed_Value,Serial_No,Blank_Col,Null_Col,Zeroes,Ones,Random_Nums,Random_Prices,Date,Milliseconds
-"VALUE(""HELLO"")",SERIAL,BLANK,NULL,ZERO,ONE,RANDOM(1 100),RANDOM_PRICE(1 100000 10),"TIMESTAMP_DATE(""2023-01-01"" ""2023-12-31"")","TIMESTAMP_MILLIS(""2024-01-01"" ""2024-02-01"")"
+Fixed_Value,Serial_No,Blank_Col,Null_Col,Zeroes,Ones,Random_Nums,Random_Prices,Date,Milliseconds,Last_Name,First_Name,Full_Name,Date_Of_Birth,Sex
+"VALUE(""HELLO"")",SERIAL,BLANK,NULL,ZERO,ONE,RANDOM(1 100),RANDOM_PRICE(1 100000 10),"TIMESTAMP_DATE(""2023-01-01"" ""2023-12-31"")","TIMESTAMP_MILLIS(""2024-01-01"" ""2024-02-01"")",NAME_FAMILY,NAME_FIRST,NAME_FULL,DATE_OF_BIRTH,SEX

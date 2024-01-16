@@ -27,12 +27,10 @@ def parse_data_types(column_names, data_types):
             errors.append(True)
             continue
         # Capture args
-        # pattern = re.compile(r'\(([^,]+(?:,\s*[^,]+)*)\)')
         args_string = type_string.replace(data_type, "") # Remove data type from front of string
         args_string = args_string[1:-2] # Remove parentheses from beginning and end
         args_string = args_string.replace("\"", "") # Remove quotation marks
         if args_string:
-            # result = args_string.group(1)
             args = [e.strip() for e in args_string.split(" ")]
             errors.append(True if not check_column_args(column_names[i], data_type, args) else False)
         else:

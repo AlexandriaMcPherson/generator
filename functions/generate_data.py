@@ -15,8 +15,11 @@ from functions.generator_functions.generate_value import generate_fixed_value
 from functions.generator_functions.generate_zero import generate_zero
 from functions.generator_functions.generate_zero_padded import generate_zero_padded
 
+from functions.get_data_functions.get_user_data import get_user_data
+from functions.get_data_functions.get_full_name import get_full_name
 
-def generate_data(rows, key, args=None, seed=None):
+
+def generate_data(rows, key, args=None, seed=None, pregenerated_data=None):
     match key:
         case "VALUE":
             return generate_fixed_value(rows, args[0])
@@ -53,14 +56,18 @@ def generate_data(rows, key, args=None, seed=None):
                 return generate_random_price(seed, rows, args[0], args[1], args[2])
             else:
                 return generate_random_price(seed, rows, args[0], args[1])
-        case "ENUM":
+        case "ENUM", "LIST_ORD":
             return generate_enum(seed, rows, args)
+        case "NAME_FAMILY":
+            return get_user_data(rows, "last_name", pregenerated_data)
+        case "NAME_FIRST":
+            return get_user_data(rows, "first_name", pregenerated_data)
         case "NAME_FULL":
-            pass
+            return get_full_name(rows, pregenerated_data)
         case "DATE_OF_BIRTH":
-            pass
+            return get_user_data(rows, "date_of_birth", pregenerated_data)
         case "SEX":
-            pass
+            return get_user_data(rows, "sex", pregenerated_data)
         case "TIMESTAMP_NOW":
             return generate_timestamp_now(rows)
         case "TIMESTAMP_TODAY":

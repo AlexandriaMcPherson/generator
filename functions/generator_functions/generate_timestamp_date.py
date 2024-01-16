@@ -4,6 +4,8 @@ from functions.random_gen import TIMESTAMP_DATE
 
 def generate_timestamp_date(rand_seed, rows, start, end):
     timestamps = generate_datetime(rand_seed, rows, start, end)
+    res = []
     # Convert to string
     for ts in timestamps:
-        ts = ts.strftime(TIMESTAMP_DATE)
+        res.append(ts.strftime(TIMESTAMP_DATE))
+    return res

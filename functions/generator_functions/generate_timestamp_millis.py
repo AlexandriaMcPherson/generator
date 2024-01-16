@@ -7,3 +7,4 @@ def generate_timestamp_millis(rand_seed, rows, start, end):
     # Convert to string
     for ts in timestamps:
         ts = ts.strftime(TIMESTAMP_WITH_MICROS)
+    return timestamps
