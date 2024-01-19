@@ -105,7 +105,7 @@ def generate_data(dataframe, rows, key, args=None, seed=None, pregenerated_data=
             return generate_timestamp_today(rows)
         case "TIMESTAMP_DATE":
             return generate_timestamp_date(seed, rows, args[0], args[1])
-        case "TIMESTAMP_SECONDS":
+        case "TIMESTAMP" | "TIMESTAMP_SECONDS":
             return generate_timestamp_seconds(seed, rows, args[0], args[1])
         case "TIMESTAMP_MILLIS":
             return generate_timestamp_millis(seed, rows, args[0], args[1])

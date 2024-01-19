@@ -14,7 +14,7 @@ def check_column_args_num(data_type, args):
                 return False
             return True
         case "FROM_TABLE" | "RANDOM_FROM_TABLE" |"RANDOM" | "RANDOM_PRICE" | "ZERO_PADDED" | "RANDOM_ZERO_PADDED" | "ENUM" | "LIST_ORD" | "LIST_RAND" | \
-            "TIMESTAMP_DATE" | "TIMESTAMP_SECONDS" | "TIMESTAMP_MILLIS":
+            "TIMESTAMP" | "TIMESTAMP_DATE" | "TIMESTAMP_SECONDS" | "TIMESTAMP_MILLIS":
             if len(args) < 2:
                 return False
             else:
@@ -37,7 +37,7 @@ def check_column_args_valid(data_type, args):
                 if not arg.isnumeric():
                     return False
             return True
-        case "TIMESTAMP_DATE" | "TIMESTAMP_SECONDS" | "TIMESTAMP_MILLIS":
+        case "TIMESTAMP" | "TIMESTAMP_DATE" | "TIMESTAMP_SECONDS" | "TIMESTAMP_MILLIS":
             for arg in args:
                 if len(arg) > 18:
                     timeformat = TIMESTAMP_WITH_MICROS
