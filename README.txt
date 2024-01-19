@@ -1,10 +1,10 @@
 ---セットアップ---
 CSVファイルをこのフォルダーに置いてください。
 他のCSVファイルからデータをインポートする場合は、このフォルダーに置いてください。
-このフォルダーに移動してからスクリプトを実行してください。
+必ずこのフォルダーに移動してからスクリプトを実行してください。
 
 ---使い方---
-./generator.sh <行数> <ファイル名>.csv <シード(任意)>
+./generator.sh <行数> <ファイル名>.csv <乱数シード(任意)>
 
 ---CSVファイル---
 コラム名
@@ -14,6 +14,7 @@ CSVファイルをこのフォルダーに置いてください。
 VALUE(VALUE)　固定値
 SERIAL(START)　シークエンス
 BLANK　空白
+NULL
 FROM_TABLE(CSV_FILE, COLUMN_NAME, REPEAT=TRUE/FALSE)　CSVファイルからデータ読み込む（順番通り）
 RANDOM_FROM_TABLE(CSV_FILE, COLUMN_NAME)　CSVファイルからデータ読み込む（ランダム）
 LIST_ORD(VAL1, VAL2...)　リスト（順番通り、繰り返し）
@@ -21,12 +22,11 @@ LIST_RAND(VAL1, VAL2...)　リスト（ランダム）
 COPY(COLUMN)　作成済みのコラムをコピー
 
 --- NUMBERS---
-NULL
 ZERO
 ONE
-RANDOM(START, END, INTERVAL)　ランダむ数字
-ZERO_PADDED(LENGTH, START)　「０」で始まるシークエンス　LENGTH＝桁数　例：001
-RANDOM_ZERO_PADDED(LENGTH, START, END, INTERVAL)　「０」で始まるランダム数字　例：0027
+RANDOM(START, END, INTERVAL)　ランダむ数字　(スタート、エンド、間隔)
+ZERO_PADDED(LENGTH, START)　ゼロ埋めのシークエンス　LENGTH＝桁数　例：001
+RANDOM_ZERO_PADDED(LENGTH, START, END, INTERVAL)　ゼロ埋めのランダム数字　LENGTH＝桁数　例：0027
 RANDOM_PRICE(START, END, INTERVAL)　ランダム価格　例：20000.000
 
 ---DATETIME---
@@ -54,12 +54,12 @@ NAME_FULL_KN　未実装
 NAME_FAMILY_EN　未実装
 NAME_FIRST_EN　未実装
 NAME_FULL_EN　未実装
-DATE_OF_BIRTH
-AGE
+DATE_OF_BIRTH　生年月日
+AGE　未実装
 SEX　男か女
 SEX_AS_NUM　0か１
 ADDRESS_ZIP　郵便番号
-ADDRESS_FULL
+ADDRESS_FULL 住所
 ADDRESS_COUNTRY　未実装
 ADDRESS_PREFECTURE　未実装
 ADDRESS_CITY　未実装
