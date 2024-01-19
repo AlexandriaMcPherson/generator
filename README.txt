@@ -1,5 +1,15 @@
+---セットアップ---
+ファイルからデータをインポートする場合は、このフォルダーに置いてください。
+
+cd generator
+source setup_venv.sh (任意)
+pip install -r requirements.txt (venvを使わない場合)
+
 ---使い方---
-./rungenerator.sh <行数> <ファイル名>.csv <シード(任意)>
+./run_generator.sh <行数> <ファイル名>.csv <シード(任意)>
+
+---venvをクローズ---
+deactivate
 
 ---CSVファイル---
 コラム名

@@ -64,6 +64,9 @@ __pypackages__/
 env/
 venv/
 ENV/
+pyvenv.cfg
+bin/
+include/
 
 # If you are using PyCharm # 
 .idea/**/workspace.xml 

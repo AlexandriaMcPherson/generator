@@ -40,7 +40,8 @@ def main():
         sys.exit(1)
 
     # Check if requested data types require user data and open file
-    if not REQUIRES_USER_DATA.isdisjoint(data_type_list):
+    list_data_types = [val["type"] for col, val in data_types.items()]
+    if not REQUIRES_USER_DATA.isdisjoint(list_data_types):
         user_df = pd.read_csv(PREGENERATED_DATA)
         if num_rows > 10000:
             print("エラー：ユーザーデータは10,000行までです。")
