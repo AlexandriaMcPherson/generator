@@ -4,17 +4,17 @@ from functions.random_gen import TIMESTAMP_DATE, TIMESTAMP_WITH_MICROS, TIMESTAM
 
 def check_column_args_num(data_type, args):
     match data_type:
-        case "VALUE":
+        case "VALUE" | "COPY":
             if not args or len(args) != 1:
                 return False
             else:
                 return True
-        case "SERIAL":
+        case "SERIAL" | "ID":
             if args and len(args) > 1:
                 return False
             return True
-        case "FROM_TABLE" | "RANDOM" | "RANDOM_PRICE" | "ZERO_PADDED" | "ENUM" | "TIMESTAMP_DATE" | \
-        "TIMESTAMP_SECONDS" | "TIMESTAMP_MILLIS":
+        case "FROM_TABLE" | "RANDOM_FROM_TABLE" |"RANDOM" | "RANDOM_PRICE" | "ZERO_PADDED" | "RANDOM_ZERO_PADDED" | "ENUM" | "LIST_ORD" | "LIST_RAND" | \
+            "TIMESTAMP_DATE" | "TIMESTAMP_SECONDS" | "TIMESTAMP_MILLIS":
             if len(args) < 2:
                 return False
             else:
@@ -24,15 +24,15 @@ def check_column_args_num(data_type, args):
         
 def check_column_args_valid(data_type, args):
     match data_type:
-        case "SERIAL":
+        case "SERIAL" | "ID":
             if not args[0].isnumeric():
                 return False
             return True
-        case "FROM_TABLE": 
+        case "FROM_TABLE" | "RANDOM_FROM_TABLE": 
             if args[0][-4:] != ".csv":
                 return False
             return True
-        case "RANDOM" | "RANDOM_PRICE" | "ZERO_PADDED":
+        case "RANDOM" | "RANDOM_PRICE" | "ZERO_PADDED" | "RANDOM_ZERO_PADDED":
             for arg in args:
                 if not arg.isnumeric():
                     return False

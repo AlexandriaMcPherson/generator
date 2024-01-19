@@ -1,18 +1,7 @@
-import pandas as pd
+from ..get_data_functions.get_data_from_table import get_data_from_table
 
 def generate_from_table(rows, filename, column_name, repeat=True):
-    pass
-    # Read column from CSV into list
-    try:
-        df = pd.read_csv(filename)
-    except:
-        print("Could not read file.")
-    # Check column name
-    if column_name not in df.columns:
-        print("Column name not found.")
-    # Fill missing values with NULL
-    df[column_name] = df[column_name].fillna("NULL")
-    data = df[column_name].tolist()
+    data = get_data_from_table(filename, column_name)
     if repeat is True:
         while len(data) < rows:
             data += data

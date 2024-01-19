@@ -23,6 +23,7 @@ def parse_data_types(column_names, data_types):
             errors.append(True)
             continue
         if not check_data_type(data_type):
+            print(data_type)
             print("コラム" + column_names[i] + "にて" + data_type + "というデータ型が解析できませんでした。")
             errors.append(True)
             continue
