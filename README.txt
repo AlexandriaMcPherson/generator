@@ -1,15 +1,10 @@
 ---セットアップ---
-ファイルからデータをインポートする場合は、このフォルダーに置いてください。
-
-cd generator
-source setup_venv.sh (任意)
-pip install -r requirements.txt (venvを使わない場合)
+CSVファイルをこのフォルダーに置いてください。
+他のCSVファイルからデータをインポートする場合は、このフォルダーに置いてください。
+このフォルダーに移動してからスクリプトを実行してください。
 
 ---使い方---
-./run_generator.sh <行数> <ファイル名>.csv <シード(任意)>
-
----venvをクローズ---
-deactivate
+./generator.sh <行数> <ファイル名>.csv <シード(任意)>
 
 ---CSVファイル---
 コラム名
@@ -19,8 +14,8 @@ deactivate
 VALUE(VALUE)　固定値
 SERIAL(START)　シークエンス
 BLANK　空白
-FROM_TABLE(CSV_FILE, COLUMN_NAME, REPEAT=TRUE/FALSE)　CSVファイルから読み込む（順番通り）
-RANDOM_FROM_TABLE(CSV_FILE, COLUMN_NAME)　CSVファイルから読み込む（ランダム）
+FROM_TABLE(CSV_FILE, COLUMN_NAME, REPEAT=TRUE/FALSE)　CSVファイルからデータ読み込む（順番通り）
+RANDOM_FROM_TABLE(CSV_FILE, COLUMN_NAME)　CSVファイルからデータ読み込む（ランダム）
 LIST_ORD(VAL1, VAL2...)　リスト（順番通り、繰り返し）
 LIST_RAND(VAL1, VAL2...)　リスト（ランダム）
 COPY(COLUMN)　作成済みのコラムをコピー
@@ -49,6 +44,7 @@ IP_ADDRESS
 ID　シークエンス
 USERNAME　未実装
 PASSWORD　ランダムパスワード
+PASSWORD_HASH 未実装
 NAME_FAMILY
 NAME_FIRST
 NAME_FULL
