@@ -8,7 +8,7 @@ def check_args(args):
     if not args[1].isnumeric():
         print(usage)
         sys.exit(1)
-    if args[2][-4:] != ".csv":
+    if args[2][-4:] not in [".csv", ".txt"]:
         print(usage)
         sys.exit(1)
     if len(args) > 3 and args[3].isnumeric() == False:

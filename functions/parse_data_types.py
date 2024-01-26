@@ -28,7 +28,7 @@ def parse_data_types(column_names, data_types):
             continue
         # Capture args
         args_string = type_string.replace(data_type, "") # Remove data type from front of string
-        args_string = args_string[1:-2] # Remove parentheses from beginning and end
+        args_string = args_string[1:-1] # Remove parentheses from beginning and end
         args_string = args_string.replace("\"", "") # Remove quotation marks
         if args_string:
             args = [e.strip() for e in args_string.split(" ")]

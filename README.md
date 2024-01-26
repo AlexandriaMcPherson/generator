@@ -1,16 +1,24 @@
----セットアップ---
+## セットアップ
 CSVファイルをこのフォルダーに置いてください。
 他のCSVファイルからデータをインポートする場合は、このフォルダーに置いてください。
 必ずこのフォルダーに移動してからスクリプトを実行してください。
 
----使い方---
+## 使い方
 ./generator.sh <行数> <ファイル名>.csv <乱数シード(任意)>
 
----CSVファイル---
+## CSVファイル
+コラム名、コラム名、コラム名
+データ定義、データ定義、データ定義
+
+## TXTファイル
+コラム名
+データ定義
+コラム名
+データ定義
 コラム名
 データ定義
 
----FIXED VALUE---
+### FIXED VALUE
 VALUE(VALUE)　固定値
 SERIAL(START)　シークエンス
 BLANK　空白
@@ -21,7 +29,7 @@ LIST_ORD(VAL1 VAL2...)　リスト（順番通り、繰り返し）
 LIST_RAND(VAL1 VAL2...)　リスト（ランダム）
 COPY(COLUMN)　作成済みのコラムをコピー
 
---- NUMBERS---
+### NUMBERS
 ZERO
 ONE
 RANDOM(START END INTERVAL)　ランダむ数字　(スタート、エンド、間隔)
@@ -29,18 +37,18 @@ ZERO_PADDED(LENGTH START)　ゼロ埋めのシークエンス　LENGTH＝桁数�
 RANDOM_ZERO_PADDED(LENGTH START END INTERVAL)　ゼロ埋めのランダム数字　LENGTH＝桁数　例：0027
 RANDOM_PRICE(START END INTERVAL)　ランダム価格　例：20000.000
 
----DATETIME---
+### DATETIME
 TIMESTAMP_NOW　今のタイムスタンプ　（日付と時、分、秒）
 TIMESTAMP_TODAY　今日の日付
 TIMESTAMP_DATE(START_DATE END_DATE)　ランダム日付
 TIMESTAMP_SECONDS(START_DATE END_DATE)　ランダムタイムスタンプ　（秒まで） TIMESTAMP()も使えます
 TIMESTAMP_MILLIS(START_DATE END_DATE)　ランダムタイムスタンプ　（ミリ秒まで）
 
----SYSTEM---
+### SYSTEM
 USER_AGENT
 IP_ADDRESS
 
----PERSON---
+### PERSON
 ID　シークエンス
 USERNAME　未実装
 PASSWORD　ランダムパスワード
@@ -79,7 +87,7 @@ COMPANY_NAME　未実装
 COMPANY_ROLE　未実装
 COMPANY_DIVISION　未実装
 
----COMPANY---
+### COMPANY
 INDUSTRY　未実装
 COMPANY_NAME　未実装
 COMPANY_DIVISION　未実装

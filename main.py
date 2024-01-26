@@ -4,7 +4,7 @@ import pandas as pd
 from functions.check_args import check_args
 from functions.generate_data import generate_data
 from functions.parse_data_types import parse_data_types
-from functions.data_type_list import data_type_list
+from functions.read_txt_file_to_df import read_txt_file_to_df
 from constants import PREGENERATED_DATA
 from constants import REQUIRES_USER_DATA
 
@@ -13,17 +13,25 @@ def main():
     check_args(sys.argv)
     num_rows = int(sys.argv[1])
     input_filename = sys.argv[2]
+    input_file_type = input_filename[-4:]
     if len(sys.argv) > 3:
         rand_seed = int(sys.argv[3])
     else:
         rand_seed = None
     
     # ファイルをデータフレームに読み込む
-    try:
-        input_df = pd.read_csv(input_filename, keep_default_na=False) # NULLを文字列として扱う
-    except:
-        print("ファイルを読み込めませんでした。")
-        sys.exit(1)
+    if input_file_type == ".csv":
+        try:
+            input_df = pd.read_csv(input_filename, keep_default_na=False) # NULLを文字列として扱う
+        except:
+            print("ファイルを読み込めませんでした。")
+            sys.exit(1)
+    else:
+        try:
+            input_df = read_txt_file_to_df(input_filename)
+        except ValueError as e:
+            print(e)
+            sys.exit(1)
 
     # コラム名をリストにする
     column_names = input_df.columns.tolist()
